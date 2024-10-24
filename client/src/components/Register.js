@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import './Register.css'; // Import the CSS file
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -21,40 +22,49 @@ const Register = () => {
     };
 
     return (
-        <div>
-        <h1>Register</h1>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <div className="register-container">
+        <h1 className="register-title">Register</h1>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit} className="register-form">
+            <div className="form-group">
             <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full Name"
-            required
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Full Name"
+                required
             />
+            </div>
+            <div className="form-group">
             <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
             />
+            </div>
+            <div className="form-group">
             <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
             />
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="employee">Employee</option>
-            <option value="admin">Admin</option>
+            </div>
+            <div className="form-group">
+            <select value={role} onChange={(e) => setRole(e.target.value)} required>
+                <option value="employee">Employee</option>
+                <option value="admin">Admin</option>
             </select>
-            
+            </div>
+            <div className="link-to-login">
             <p>
                 <Link to="/login">Already Registered...?</Link>
             </p>
-            <button type="submit">Register</button>
+            </div>
+            <button type="submit" className="register-btn">Register</button>
         </form>
         </div>
     );

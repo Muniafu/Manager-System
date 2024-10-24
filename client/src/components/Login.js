@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
     const { login } = useContext(AuthContext);
@@ -18,17 +19,34 @@ const Login = () => {
     };
 
     return (
-        <div>
-        <h1>Login</h1>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-
+        <div className="login-container">
+        <h1 className="login-title">Login</h1>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit} className="login-form">
+            <div className="form-group">
+            <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+            />
+            </div>
+            <div className="form-group">
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+            />
+            </div>
+            <div className="link-to-register">
             <p>
                 <Link to="/">Not Registered User...?</Link>
             </p>
-            <button type="submit">Login</button>
+            </div>
+            <button type="submit" className="login-btn">Login</button>
         </form>
         </div>
     );
